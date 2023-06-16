@@ -15,80 +15,53 @@ if (close) {
 }
 
 let MainImg = document.getElementById("MainImg");
-let smallimg = document.getElementsByClassName("small-img");
+let smallImg = document.getElementsByClassName("small-img");
 
-smallimg[0].onclick = function () {
-  MainImg.src = smallimg[0].src;
-};
-smallimg[1].onclick = function () {
-  MainImg.src = smallimg[1].src;
-};
-smallimg[2].onclick = function () {
-  MainImg.src = smallimg[2].src;
-};
-smallimg[3].onclick = function () {
-  MainImg.src = smallimg[3].src;
-};
-
-
-
-let MainImgOne = document.getElementById("MainImgOne");
-let smallimg1 = document.getElementsByClassName("small-img-o");
-
-smallimg1[0].onclick = function () {
-  MainImgOne.src = smallimg1[0].src;
-};
-smallimg1[1].onclick = function () {
-  MainImgOne.src = smallimg1[1].src;
-};
-smallimg1[2].onclick = function () {
-  MainImgOne.src = smallimg1[2].src;
-};
-smallimg1[3].onclick = function () {
-  MainImgOne.src = smallimg1[3].src;
-};
-
-
+if (smallImg !== undefined && smallImg.length > 0) {
+  for (let i = 0; i < smallImg.length; i++) {
+    smallImg[i].onclick = function () {
+      MainImg.src = smallImg[i].src;
+    };
+  }
+}
 
 function validatePhone(phone) {
-    let re = /^[0-9\s]*$/;
-     return re.test(String(phone));
+  let re = /^[0-9\s]*$/;
+  return re.test(String(phone));
 }
-const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+const EMAIL_REGEXP =
+  /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
 
-const INPUT = document.querySelector('input');
+const INPUT = document.querySelector("input");
 
 function isEmailValid(value) {
   return EMAIL_REGEXP.test(value);
 }
 
-
 function updateInput() {
-  if (isEmailValid(INPUT.value)) INPUT.style.borderColor = 'green';
-  else INPUT.style.borderColor = 'red';
+  if (isEmailValid(INPUT.value)) INPUT.style.borderColor = "green";
+  else INPUT.style.borderColor = "red";
 }
 
-INPUT.addEventListener('input', updateInput);
+INPUT.addEventListener("input", updateInput);
 
-const form = document.querySelector('form');
-  const textarea = form.elements.textarea;
+const form = document.querySelector("form");
+const textarea = form.elements.textarea;
 
-  form.addEventListener('submit', (event) => {
-    
-    event.preventDefault();
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
 
-    const value = textarea.value;
+  const value = textarea.value;
 
-    if (!value.trim()) {
-      alert('Error!');
-      return;
-    }
+  if (!value.trim()) {
+    alert("Error!");
+    return;
+  }
 
-    if (/\n.*\n.*\n/.test(value)) {
-      alert('Error!');
-      return;
-    }
+  if (/\n.*\n.*\n/.test(value)) {
+    alert("Error!");
+    return;
+  }
 
-    form.submit();
-  });
-
+  form.submit();
+});
