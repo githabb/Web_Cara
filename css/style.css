@@ -224,7 +224,7 @@ body {
 }
 
 #product1{
-  text-align: center;
+  text-align: -webkit-center;
 }
 
 #product1 .pro-container{
@@ -1006,6 +1006,7 @@ form {
 
 .card__box{
   display: flex;
+  
   
 }
 .card1{
