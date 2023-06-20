@@ -1123,6 +1123,21 @@ button:last-child:hover {
   #product1 .pro {
     margin: 15px;
   }
+
+  .card__box{
+    justify-content: center;
+  }
+  .card1{
+    margin: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    
+    
+  }
+  .card__box{
+    width: 100%;
+  }
   #banner {
     height: 20vh;
   }
@@ -1138,6 +1153,14 @@ button:last-child:hover {
   }
   #newsletter .form {
     width: 70%;
+  }
+ 
+ 
+  .card1{
+    display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	margin: 5px;
   }
 }
 
@@ -1168,6 +1191,8 @@ button:last-child:hover {
   #product1 .pro {
     width: 100%;
   }
+
+ 
   #banner {
     height: 40vh;
   }
