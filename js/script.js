@@ -25,43 +25,72 @@ if (smallImg !== undefined && smallImg.length > 0) {
   }
 }
 
-function validatePhone(phone) {
-  let re = /^[0-9\s]*$/;
-  return re.test(String(phone));
-}
-const EMAIL_REGEXP =
-  /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
 
-const INPUT = document.querySelector("input");
-
-function isEmailValid(value) {
-  return EMAIL_REGEXP.test(value);
-}
-
-function updateInput() {
-  if (isEmailValid(INPUT.value)) INPUT.style.borderColor = "green";
-  else INPUT.style.borderColor = "red";
-}
-
-INPUT.addEventListener("input", updateInput);
 
 const form = document.querySelector("form");
-const textarea = form.elements.textarea;
+const nameInput = form.querySelector('input[type="name"]');
+const emailInput = form.querySelector('input[type="email"]');
+const phoneInput = form.querySelector('input[name="phone"]');
+const textareaInput = form.querySelector('textarea[name="textarea"]');
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const value = textarea.value;
-
-  if (!value.trim()) {
-    alert("Error!");
+  const nameValue = nameInput.value.trim();
+  if (nameValue === "") {
+    showError(nameInput, "Please enter your name.");
     return;
   }
 
-  if (/\n.*\n.*\n/.test(value)) {
-    alert("Error!");
+  const emailValue = emailInput.value.trim();
+  if (emailValue === "") {
+    showError(emailInput, "Please enter your email.");
+    return;
+  } else if (!isEmailValid(emailValue)) {
+    showError(emailInput, "Please enter a valid email address.");
+    return;
+  }
+
+  const phoneValue = phoneInput.value.trim();
+  if (phoneValue !== "" && !validatePhone(phoneValue)) {
+    showError(phoneInput, "Please enter a valid phone number.");
+    return;
+  }
+
+ 
+  const textareaValue = textareaInput.value.trim();
+  if (textareaValue === "") {
+    showError(textareaInput, "Please enter your message.");
     return;
   }
 
   form.submit();
 });
+
+function showError(input, message) {
+  const errorElement = document.createElement("div");
+  errorElement.classList.add("error");
+  errorElement.innerText = message;
+
+  const inputContainer = input.parentElement;
+  inputContainer.appendChild(errorElement);
+
+  input.classList.add("error-input");
+  input.focus();
+
+  setTimeout(() => {
+    errorElement.remove();
+    input.classList.remove("error-input");
+  }, 3000);
+}
+
+function validatePhone(phone) {
+  let re = /^[0-9\s]+$/;
+  return re.test(String(phone));
+}
+
+function isEmailValid(email) {
+  const EMAIL_REGEXP =
+    /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+  return EMAIL_REGEXP.test(email);
+}

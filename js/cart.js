@@ -1,8 +1,8 @@
 let count = 0;
-// если пользователь нажал на кнопку "В корзину"
+
 $(".cart1-btn").on("click", function () {
   let cart1 = $(".cart1-nav");
-  // находим картинку той карточки, на кнопку которой нажимает пользователь
+ 
   let imgtodrag = $(this)
     .parent(".buttons")
     .parent(".content1")
@@ -10,7 +10,7 @@ $(".cart1-btn").on("click", function () {
     .find("img")
     .eq(0);
   if (imgtodrag) {
-    // дублируем картинку
+    
     var imgclone = imgtodrag
       .clone()
       .offset({
